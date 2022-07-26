@@ -12,25 +12,28 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(()=>{
+    console.log('Checking form validity!');
     setFormIsValid(
        enteredEmail.includes('@') && enteredPassword.trim().length > 6
      );
   },[enteredEmail, enteredPassword]);
 
-  const emailChangeHandler = (event) => {
+  // const emailChangeHandler = (event) => {
+  //   setEnteredEmail(event.target.value);
+  // };
+
+  // const passwordChangeHandler = (event) => {
+  //   setEnteredPassword(event.target.value);
+  // };
+
+  const validateEmailHandler = (event) => {
     setEnteredEmail(event.target.value);
+    //setEmailIsValid(enteredEmail.includes('@'));
   };
 
-  const passwordChangeHandler = (event) => {
+  const validatePasswordHandler = (event) => {
     setEnteredPassword(event.target.value);
-  };
-
-  const validateEmailHandler = () => {
-    setEmailIsValid(enteredEmail.includes('@'));
-  };
-
-  const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
+    //setPasswordIsValid(enteredPassword.trim().length > 6);
   };
 
   const submitHandler = (event) => {
@@ -50,8 +53,7 @@ const Login = (props) => {
           <input
             type="email"
             id="email"
-            value={enteredEmail}
-            onChange={emailChangeHandler}
+            defaultValue={enteredEmail}
             onBlur={validateEmailHandler}
           />
         </div>
@@ -64,8 +66,7 @@ const Login = (props) => {
           <input
             type="password"
             id="password"
-            value={enteredPassword}
-            onChange={passwordChangeHandler}
+            defaultValue={enteredPassword}
             onBlur={validatePasswordHandler}
           />
         </div>
