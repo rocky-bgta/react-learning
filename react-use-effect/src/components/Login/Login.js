@@ -36,6 +36,11 @@ const Login = (props) => {
     const [emailState, dispatchEmail] = useReducer(emailReducer, {value: '', isValid: null});
     const [passwordState, dispatchPassword] = useReducer(passwordReducer, {value: '', isValid: null});
 
+
+    // object destructuring and set alise
+    const {isValid: emailIsValid} = emailState;
+    const {isValid: passwordIsValid} = passwordState;
+
     useEffect(() => {
         console.log('EFFECT RUNNING');
 
@@ -49,7 +54,7 @@ const Login = (props) => {
       const identifier = setTimeout(() => {
         console.log('Checking form validity!');
         setFormIsValid(
-          emailState.isValid && passwordState.isValid
+            emailIsValid && passwordIsValid
         );
       }, 500);
 
@@ -57,7 +62,7 @@ const Login = (props) => {
         console.log('CLEANUP');
         clearTimeout(identifier);
       };
-    }, [emailState, passwordState]);
+    }, [emailIsValid, passwordIsValid]);
 
     const emailChangeHandler = (event) => {
         //setEnteredEmail(event.target.value);
